@@ -1,0 +1,11 @@
+extends ../layout
+
+block content 
+  div.text-center
+    form(action="/users/login" method="POST")
+      h1() Please sign in
+      input(name="username" placeholder="Username" required autofocus)
+      br()
+      input(type="password" name="password" placeholder="Password" required autofocus)
+      br()
+      button(type="submit" value="Submit") Sign in

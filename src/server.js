@@ -1,11 +1,6 @@
-import express from 'express'
+import app from './app.js'
 
-const app = express()
 const port = 3000
-
-app.get('/', (req, res) => {
-  res.send('Hello, World!')
-})
 
 app.listen(port, () => {
   console.log(`Node JS Real Time Chat App listening at http://localhost:${port}`)
