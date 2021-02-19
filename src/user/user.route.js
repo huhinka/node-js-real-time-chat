@@ -6,9 +6,13 @@ import User from './user.model.js'
 
 const router = new Router()
 
-// users
+// register
 
-router.post('/', async (req, res, next) => {
+router.get('/register', (req, res) => {
+  res.render('user/user-register', { title: 'register' })
+})
+
+router.post('/register', async (req, res, next) => {
   const newUser = new User({
     username: req.body.username,
     password: req.body.password
@@ -20,7 +24,7 @@ router.post('/', async (req, res, next) => {
   } else {
     try {
       await newUser.save()
-      res.send('User added successfully')
+      res.redirect('login')
     } catch (e) {
       next(e)
     }
