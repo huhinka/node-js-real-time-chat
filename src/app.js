@@ -36,8 +36,12 @@ app.set('view engine', 'pug')
 
 // common middleware
 
+const staticPath = path.join(path.resolve(), 'public')
+app.use('/static', express.static(staticPath))
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+
 app.use(session({
   secret: 'keyboard cat',
   resave: false, // don't save session if unmodified

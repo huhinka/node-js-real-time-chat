@@ -1,4 +1,12 @@
 extends ../layout
 
+block head
+  link(rel='stylesheet', href="/static/index/index.css")
+
 block content 
-  h1= message
+  script(src="/socket.io/socket.io.js")
+  script(src="/static/index/index.socket.io-client.js")
+  ul(id="messages")
+  form(id="form" action="")
+    input(id="input" autocomplete="off")
+    button() Send
