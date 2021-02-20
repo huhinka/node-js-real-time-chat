@@ -1,5 +1,7 @@
 window.onload = () => {
+  const FIRST_MSG = 'first message'
   const CHAT_MESSAGE = 'chat message'
+  const BROADCASTING = 'broadcasting'
 
   const socket = io()
 
@@ -8,11 +10,13 @@ window.onload = () => {
   const form = document.getElementById('form')
   const input = document.getElementById('input')
 
+  socket.emit(FIRST_MSG, { username: username.textContent })
+
   form.addEventListener('submit', function (e) {
     e.preventDefault()
 
     if (input.value) {
-      socket.emit('chat message', { username: username.textContent, msg: input.value })
+      socket.emit('chat message', input.value)
       input.value = ''
     }
   })
@@ -25,6 +29,10 @@ window.onload = () => {
   }
 
   socket.on(CHAT_MESSAGE, (msg) => {
+    addMessage(`[${msg.date}] ${msg.username}: ${msg.message}`)
+  })
+
+  socket.on(BROADCASTING, (msg) => {
     addMessage(`[${msg.date}] ${msg.username}: ${msg.message}`)
   })
 
