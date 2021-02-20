@@ -9,7 +9,7 @@ import initPassportStrategy from './config/passport.js'
 
 import userRouter from './user/user.route.js'
 import indexRouter from './index/index.route.js'
-import morgan from 'morgan'
+import morganBody from 'morgan-body'
 
 // db
 
@@ -28,7 +28,6 @@ connectWithRetry()
 
 // app
 const app = express()
-app.use(morgan('combined'))
 
 // view
 const srcPath = path.join(path.resolve(), 'src')
@@ -44,6 +43,8 @@ app.use(session({
   resave: false, // don't save session if unmodified
   saveUninitialized: false // don't create session until something stored
 }))
+
+morganBody(app)
 
 // passport
 initPassportStrategy()
