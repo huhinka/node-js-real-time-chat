@@ -5,8 +5,10 @@ block head
 
 block content 
   script(src="/socket.io/socket.io.js")
+  script(src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js")
   script(src="/static/index/index.socket.io-client.js")
   ul(id="messages")
   form(id="form" action="")
+    h2(id="username")= username
     input(id="input" autocomplete="off")
     button() Send

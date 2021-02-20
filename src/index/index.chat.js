@@ -1,15 +1,32 @@
+import dayjs from 'dayjs'
+
+const BROADCASTING = 'broadcasting'
+const CHAT_MESSAGE = 'chat message'
+
+const ROBOT = 'robot:'
+
+function now () {
+  return dayjs().format('YYYY-MM-DD HH:mm:ss')
+}
+
+function createMessage (msg, username = ROBOT) {
+  return {
+    date: now(),
+    username: username,
+    message: msg
+  }
+}
+
 export default function onChat (io) {
   return (socket) => {
-    console.log('a user connected')
-    socket.broadcast.emit('hi')
+    io.emit(BROADCASTING, createMessage('joined the room'))
 
     socket.on('disconnect', () => {
-      console.log('user disconnected')
+      io.emit(BROADCASTING, createMessage('exists'))
     })
 
-    socket.on('chat message', (msg) => {
-      console.log(`message: ${msg}`)
-      io.emit('chat message', msg)
+    socket.on(CHAT_MESSAGE, (msg) => {
+      io.emit(CHAT_MESSAGE, createMessage(msg.msg, msg.username))
     })
   }
 }
