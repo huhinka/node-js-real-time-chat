@@ -13,15 +13,19 @@ Inspired by [node js project ideas for beginners](https://www.blog.duomly.com/no
 * Node.js
 * Express.js
 * SocketIO
+* Pug
+* Docker
 
 ## Install
 
-```
+```shell
 npm install
 ```
 
 ## Run
 
+```shell
+docker-compose up
 ```
-npm run start
-```
+
+and visit http://localhost:3000
