@@ -35,14 +35,14 @@ const srcPath = path.join(path.resolve(), 'src')
 app.set('views', srcPath)
 app.set('view engine', 'pug')
 
-// common middlewire
+// common middleware
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(session({
   secret: 'keyboard cat',
   resave: false, // don't save session if unmodified
-  saveUninitialized: false // don't create session until somethint stored
+  saveUninitialized: false // don't create session until something stored
 }))
 
 // passport
